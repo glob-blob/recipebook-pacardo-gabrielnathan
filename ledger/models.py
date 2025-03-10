@@ -10,6 +10,9 @@ class Ingredient(models.Model):
 
 class Recipe(models.Model):
     name = models.CharField(max_length=50)
+    author = models.CharField(max_length=50,null=True) #edit this later
+    creation_date = models.DateTimeField(auto_now_add=True)
+    update_date = models.DateTimeField(auto_now=True)
     def __str__(self):
         return str(self.name)
     def get_absolute_url(self):
