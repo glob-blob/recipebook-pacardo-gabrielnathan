@@ -10,7 +10,7 @@ class Ingredient(models.Model):
 
 class Recipe(models.Model):
     name = models.CharField(max_length=50)
-    author = models.CharField(max_length=50,null=True) #edit this later
+    author = models.CharField(max_length=50,null=True)
     creation_date = models.DateTimeField(auto_now_add=True)
     update_date = models.DateTimeField(auto_now=True)
     def __str__(self):
@@ -28,3 +28,12 @@ class RecipeIngredient(models.Model):
                                on_delete=models.SET_NULL,
                                null=True, 
                                related_name='ingredients')
+    
+
+class RecipeImage(models.Model):
+    image = models.ImageField(upload_to='images/', null=False)
+    description = models.CharField(max_length=255)
+    recipe =  models.ForeignKey(Recipe, 
+                                    on_delete=models.CASCADE, 
+                                    null=False, 
+                                    related_name='image')
